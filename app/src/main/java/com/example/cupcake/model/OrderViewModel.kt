@@ -8,17 +8,21 @@ import java.util.*
 
 class OrderViewModel : ViewModel() {
     val dateOptions = getPickupOptions()
-    private val _quantity = MutableLiveData(0)
+    private val _quantity = MutableLiveData<Int>()
     val quantity:LiveData<Int> = _quantity
 
-    private val _flavor = MutableLiveData("")
+    private val _flavor = MutableLiveData<String>()
     val flavor:LiveData<String> = _flavor
 
-    private val _date = MutableLiveData("")
+    private val _date = MutableLiveData<String>()
     val date:LiveData<String> = _date
 
-    private val _price = MutableLiveData(0.0)
+    private val _price = MutableLiveData<Double>()
     val price:LiveData<Double> = _price
+
+    init {
+        resetOrder()
+    }
 
     fun setQuantity(numberCupcakes:Int){
         _quantity.value = numberCupcakes
