@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/red_velvet"
                     android:checked="@{viewModel.flavor.equals(@string/red_velvet)}"
-                    android:onClick="@{()->viewModel.setFlavor(@string/velvet)}"
+                    android:onClick="@{()->viewModel.setFlavor(@string/red_velvet)}"
                     />
 
                 <RadioButton
