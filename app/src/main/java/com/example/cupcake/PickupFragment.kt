@@ -50,16 +50,17 @@ class PickupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
-            nextButton.setOnClickListener { goToNextScreen() }
+//            nextButton.setOnClickListener { goToNextScreen() }
             viewModel = sharedViewModel
             lifecycleOwner=viewLifecycleOwner
+            pickupFragment = this@PickupFragment
         }
     }
 
     /**
      * Navigate to the next screen to see the order summary.
      */
-    private fun goToNextScreen() {
+    fun goToNextScreen() {
         findNavController().navigate(R.id.action_pickupFragment_to_summaryFragment)
     }
 
