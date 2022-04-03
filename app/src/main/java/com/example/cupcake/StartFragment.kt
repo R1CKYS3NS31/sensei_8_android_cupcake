@@ -54,7 +54,7 @@ class StartFragment : Fragment() {
     /**
      * Start an order with the desired quantity of cupcakes and navigate to the next screen.
      */
-    private fun orderCupcake(quantity: Int) {
+    fun orderCupcake(quantity: Int) {
         sharedViewModel.setQuantity(quantity)
         if (sharedViewModel.hasNoFlavorSet()){
             sharedViewModel.setFlavor(getString(R.string.vanilla))
