@@ -15,6 +15,7 @@
  */
 package com.example.cupcake
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +37,7 @@ class SummaryFragment : Fragment() {
     // This property is non-null between the onCreateView() and onDestroyView() lifecycle callbacks,
     // when the view hierarchy is attached to the fragment.
     private var binding: FragmentSummaryBinding? = null
-    private val sharedViewModel:OrderViewModel by activityViewModels()
+    private val sharedViewModel: OrderViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +54,7 @@ class SummaryFragment : Fragment() {
         binding?.apply {
 //            sendButton.setOnClickListener { sendOrder() }
             viewModel = sharedViewModel
-            lifecycleOwner=viewLifecycleOwner
+            lifecycleOwner = viewLifecycleOwner
             summaryFragment = this@SummaryFragment
         }
     }
@@ -69,6 +70,13 @@ class SummaryFragment : Fragment() {
             sharedViewModel.date.value.toString(),
             sharedViewModel.price.value.toString()
         )
+        val intent = Intent(Intent.ACTION_SEND)
+            .setType("text/plain")
+            .putExtra(Intent.EXTRA_SUBJECT, getString(R.string.new_cupcake_order))
+            .putExtra(Intent.EXTRA_TEXT, orderSummary)
+        if (activity?.packageManager?.resolveActivity(intent,0) !=null){
+            startActivity(intent)
+        }
     }
 
     /**
@@ -80,7 +88,7 @@ class SummaryFragment : Fragment() {
         binding = null
     }
 
-    fun cancelOrder(){
+    fun cancelOrder() {
         sharedViewModel.resetOrder()
         findNavController().navigate(R.id.action_summaryFragment_to_startFragment)
     }
