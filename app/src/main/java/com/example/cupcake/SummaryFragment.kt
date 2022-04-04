@@ -61,7 +61,7 @@ class SummaryFragment : Fragment() {
      * Submit the order by sharing out the order details to another app via an implicit intent.
      */
     fun sendOrder() {
-        Toast.makeText(activity, "Send Order", Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity, "Order sent. Thank you!", Toast.LENGTH_SHORT).show()
     }
 
     /**
